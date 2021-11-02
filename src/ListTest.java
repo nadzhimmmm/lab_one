@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListTest {
 
-
     @org.junit.jupiter.api.Test
     void test_add_in_front() {
         List LIST1 = new List();
@@ -35,13 +34,15 @@ class ListTest {
     }
 
     @org.junit.jupiter.api.Test
-    void test_add_in_position() {
+    void test_add_in_position() throws Exception {
         List LIST4=new List();
         LIST4.add_in_back(4);
         LIST4.add_in_back(5);
         assertDoesNotThrow(() -> LIST4.add_in_position(0,3));
+        assertEquals(3, LIST4.get_element(0));
         assertEquals(3, LIST4.getSize());
         assertDoesNotThrow(() -> LIST4.add_in_position(0,5));
+        assertEquals(5, LIST4.get_element(0));
         assertEquals(4, LIST4.getSize());
     }
 
@@ -59,10 +60,12 @@ class ListTest {
         List LIST6=new List();
         LIST6.add_in_back(4);
         LIST6.add_in_back(5);
+        LIST6.add_in_back(5);
         assertDoesNotThrow(() -> LIST6.delete_back());
         assertEquals(1, LIST6.getSize());
         assertDoesNotThrow(() -> LIST6.delete_back());
         assertEquals(0, LIST6.getSize());
+
     }
 
     @org.junit.jupiter.api.Test

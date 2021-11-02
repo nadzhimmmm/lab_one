@@ -29,6 +29,13 @@ class Main {
                 System.out.println("2.Добавить в конец");
                 System.out.println("3.Добавить в произвольное место");
                 y=in.nextInt();
+                while(y<1||y>3)
+                {
+                    System.out.println("Некорректный ввод. Введите число от 1 до 3.");
+                    y=in.nextInt();
+                }
+
+
                 if(y==1) l.add_in_front(data);
                 else if(y==2) l.add_in_back(data);
                 else if(y==3)

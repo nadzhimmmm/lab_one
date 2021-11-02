@@ -1,7 +1,5 @@
-import java.io.*;
+import javax.swing.*;
 import java.util.Objects;
-import java.util.Scanner;
-import java.util.NoSuchElementException;
 /**
  * @author Mokhammad Nadzhim
  * @version 1.0
@@ -96,7 +94,7 @@ class List {
     public void add_in_position(int pos, int data) throws Exception
     {
         if (pos > size || pos < 0) {
-            throw new Exception("the index is entered incorrectly");
+            throw new Exception("The index is entered incorrectly");
         }
         if (pos == 0) {
             add_in_front(data);
@@ -136,7 +134,7 @@ class List {
      */
     public void delete_back() throws Exception {
         if (isEmpty()) {
-            throw new Exception("attempt to delete an item from an empty list");
+            throw new Exception("Attempt to delete an item from an empty list");
         } else {
             if (head.next == null) {
                 head = tail = null;
@@ -193,18 +191,26 @@ class List {
         }
     }
 
-    public int get_element(int pos)
+    /**
+     * Method for getting the value of an element by index
+     * @param pos element index
+     * @return element value
+     * @throws Exception Out of index range
+     */
+    public int get_element(int pos) throws Exception
     {
-        ListElement q=this.head;
-        if (pos>=0&&pos<size) {
-
-            for (int i = 0; i < size; i++) {
-                if (i == pos) return q.data;
-                q = q.next;
+        if (pos>= size||pos<0)
+            throw new Exception("Out of index range");
+            else {
+            ListElement q = this.head;
+            if (pos >= 0 && pos < size) {
+                for (int i = 0; i < size; i++) {
+                    if (i == pos) return q.data;
+                    q = q.next;
+                }
             }
         }
         return 0;
-
     }
 
     /**
@@ -213,10 +219,9 @@ class List {
     void printList() {
         ListElement q = this.head;
         if (q == null) {
-            System.out.println("Список пуст, добавьте в него элементы.");
+            System.out.println("The list is empty, add items to it.");
             return;
         }
-
         while (q != null) {
             System.out.print(q.data);
             System.out.print(" ");
@@ -232,7 +237,7 @@ class List {
     public String toString() {
         String result = new String(" ");
         if (getSize() == 0) {
-            return result;
+            return "The list is empty";
         }
         for (int i = 0; i < getSize(); i++) {
             String t = null;
@@ -269,6 +274,11 @@ class List {
         return Objects.hash(head, tail, size);
     }
 
+    /**
+     * Returns the data of last Node from the list
+     * @return Data from Node
+     * @throws Exception  when list is empty
+     */
     public int back() throws Exception {
         if (tail != null) {
             return tail.data;
@@ -277,6 +287,11 @@ class List {
         }
     }
 
+    /**
+     * Returns the data of first Node from the list
+     * @return Data from Node
+     * @throws Exception  when list is empty
+     */
     public int front() throws Exception {
         if (head != null) {
             return head.data;
