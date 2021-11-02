@@ -1,39 +1,11 @@
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 /**
  * @author Mokhammad Nadzhim
  * @version 1.0
- *
- *
  */
-
-/**
- * This is a list item class
- */
-class ListElement {
-    /** The field is a pointer to the next item in the list*/
-    public ListElement next;
-    /** The field is a pointer to the previous item in the list*/
-    /** Element value field*/
-    int data;
-    public ListElement(int data) {
-        this.data = data;
-        next = null;
-    }
-
-
-    public ListElement() {
-        next=null;
-        data=0;
-    }
-    public ListElement(int data, ListElement next ) {
-        this.data = data;
-
-        this.next = next;
-    }
-}
-
 /**
  * A container class that allows you to store an arbitrary number of objects
  */
@@ -52,9 +24,10 @@ class List {
     private int size = 0;
 
     /**
-     * Сreating a class with null values
+     * Creating a class with null values
      */
-    public List() {
+    public List()
+    {
         head = tail = null;
         size = 0;
     }
@@ -64,7 +37,8 @@ class List {
      *
      * @param data the value of the element being added
      */
-    void add_in_front(int data) {
+    void add_in_front(int data)
+    {
         ListElement new_element = new ListElement();
         new_element.data = data;
 
@@ -86,7 +60,8 @@ class List {
      *
      * @param data the value of the element being added
      */
-    void add_in_back(int data) {
+    void add_in_back(int data)
+    {
         ListElement new_element = new ListElement();
         new_element.data = data;
         if (tail == null) {
@@ -101,11 +76,12 @@ class List {
     }
 
     /**
-     * Еhe method of checking for emptiness
+     * The method of checking for emptiness
      *
      * @return true if empty, false otherwise
      */
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return head == null;
     }
 
@@ -117,9 +93,10 @@ class List {
      * @param data the value of the new element
      * @throws Exception when the index out of range
      */
-    public void add_in_position(int pos, int data) throws Exception {
+    public void add_in_position(int pos, int data) throws Exception
+    {
         if (pos > size || pos < 0) {
-            throw new Exception("Индекс  введен неверно");
+            throw new Exception("the index is entered incorrectly");
         }
         if (pos == 0) {
             add_in_front(data);
@@ -153,9 +130,13 @@ class List {
         return size;
     }
 
+    /**
+     * Deleting the last item in the list
+     * @throws  Exception when there's an attempt to delete Node from empty list
+     */
     public void delete_back() throws Exception {
         if (isEmpty()) {
-            throw new Exception("Attempt to delete element from empty List");
+            throw new Exception("attempt to delete an item from an empty list");
         } else {
             if (head.next == null) {
                 head = tail = null;
@@ -167,28 +148,38 @@ class List {
                     q = q.next;
                 }
                 t.next = null;
+                tail=t;
             }
             size--;
         }
     }
 
+    /**
+     * Deleting the first item in the list
+     * @throws Exception when there's an attempt to delete Node from empty list
+     */
     public void delete_first() throws Exception {
         if (isEmpty()) {
-            throw new Exception("Attempt to delete element from empty List");
+            throw new Exception("Attempt to delete an item from an empty list");
         } else {
             head = head.next;
             size--;
         }
     }
 
+    /**
+     * Deleting an item by position
+     * @param index index of the item being deleted
+     * @throws Exception attempt to delete an element with an invalid index
+     */
     public void delete_in_position(int index) throws Exception {
-        if (index > size - 1) {
-            throw new Exception("Out of list index range");
+        if (index > size) {
+            throw new Exception("The index is entered incorrectly");
         }
 
         if (index == 0) {
             delete_first();
-        } else if (index == size - 1) {
+        } else if (index == size) {
             delete_back();
         } else {
             ListElement t = this.head;
@@ -201,6 +192,7 @@ class List {
             size--;
         }
     }
+
     public int get_element(int pos)
     {
         ListElement q=this.head;
@@ -214,9 +206,6 @@ class List {
         return 0;
 
     }
-
-
-
 
     /**
      * The method that displays the list on the screen
@@ -237,7 +226,6 @@ class List {
 
     /**
      * Redefined toString method
-     *
      * @return list items
      */
     @Override
@@ -258,18 +246,27 @@ class List {
         result = result.substring(0, result.length() - 1);
         return result;
     }
+
+    /**
+     * Overriding the equals method
+     * @param o the object being compared
+     * @return true if equal, false if not equal
+     */
     @Override
-    public int hashCode()
-    {
-        int hash = 31 * 3;
-        if (!isEmpty()) {
-            ListElement t = this.head;
-            while (head != null) {
-                hash += t.hashCode();
-                t = t.next;
-            }
-        }
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        List list = (List) o;
+        return size == list.size && Objects.equals(head, list.head) && Objects.equals(tail, list.tail);
+    }
+
+    /**
+     * Overriding of hashCode method from Object class because we override equals
+     * @return hash of instance
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(head, tail, size);
     }
 }
 
