@@ -7,11 +7,13 @@ import java.util.NoSuchElementException;
  */
 class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         List l = new List();
+        /*
         System.out.println("Введите количество элементов");
-        Scanner in=new Scanner(System.in);
-        int n=in.nextInt();
+        */
+
+        /*
         for (int i=0;i<n;i++)
         {
             System.out.println((i+1)+")");
@@ -19,15 +21,21 @@ class Main {
             l.add_in_back(val);
         }
         System.out.println(l.toString());
+        */
+
         int option;
         int quit=1;
         int y;
         while(quit!=0)
         {
+            System.out.println("____________________________");
             System.out.println("1.Добавление");
             System.out.println("2.Удаление");
             System.out.println("3.Вывод");
+            System.out.println("4.Размерность списка");
             System.out.println("0.Выход");
+            System.out.println("____________________________");
+            Scanner in=new Scanner(System.in);
             option=in.nextInt();
             if (option==1)
             {
@@ -44,21 +52,35 @@ class Main {
                 {
                     System.out.println("На какую позицию вы хотите поставить новый элемент?");
                     int pos=in.nextInt();
-                    l.add(pos,data);
+
+
+                    l.add_in_position(pos,data);
                 }
             }
             else if (option==2)
             {
-                System.out.println("Значение удаляемого элемента");
-                int data=in.nextInt();
-                l.delete_element_position(data);
+
+                System.out.println("Позиция удаляемого элемента");
+                int pos=in.nextInt();
+                l.delete_in_position(pos);
             }
             else if (option==3)
             {
-                System.out.println(l.toString());
+                l.printList();
+                System.out.println();
+                //System.out.println(l.toString());
+
+            }
+            else if (option==4)
+            {
+                int a=l.getSize();
+                System.out.print("Размерность:");
+                System.out.println(a);
+                //System.out.println(l.toString());
+
             }
             else if (option==0) quit=0;
-            else quit =0;
+            else System.out.println("Некорректный ввод. Повторите.");
         }
     }
 }
