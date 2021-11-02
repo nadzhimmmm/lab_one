@@ -268,6 +268,24 @@ class List {
     public int hashCode() {
         return Objects.hash(head, tail, size);
     }
+
+    public int back() throws Exception {
+        if (tail != null) {
+            return tail.data;
+        } else {
+            throw new Exception("Nothing to get from empty list");
+        }
+    }
+
+    public int front() throws Exception {
+        if (head != null) {
+            return head.data;
+        } else {
+            throw new Exception("Nothing to get from empty List");
+        }
+    }
+
+
 }
 
 
