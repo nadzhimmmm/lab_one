@@ -132,7 +132,7 @@ class List {
      * Deleting the last item in the list
      * @throws  Exception when there's an attempt to delete Node from empty list
      */
-    public void delete_back() throws Exception {
+    public void delete_last() throws Exception {
         if (isEmpty()) {
             throw new Exception("Attempt to delete an item from an empty list");
         } else {
@@ -174,11 +174,10 @@ class List {
         if (index > size) {
             throw new Exception("The index is entered incorrectly");
         }
-
         if (index == 0) {
             delete_first();
-        } else if (index == size) {
-            delete_back();
+        } else if (index == size-1) {
+            delete_last();
         } else {
             ListElement t = this.head;
             int counter = 0;
@@ -191,27 +190,6 @@ class List {
         }
     }
 
-    /**
-     * Method for getting the value of an element by index
-     * @param pos element index
-     * @return element value
-     * @throws Exception Out of index range
-     */
-    public int get_element(int pos) throws Exception
-    {
-        if (pos>= size||pos<0)
-            throw new Exception("Out of index range");
-            else {
-            ListElement q = this.head;
-            if (pos >= 0 && pos < size) {
-                for (int i = 0; i < size; i++) {
-                    if (i == pos) return q.data;
-                    q = q.next;
-                }
-            }
-        }
-        return 0;
-    }
 
     /**
      * The method that displays the list on the screen
@@ -300,7 +278,27 @@ class List {
         }
     }
 
-
+    /**
+     * Method for getting the value of an element by index
+     * @param pos element index
+     * @return element value
+     * @throws Exception Out of index range
+     */
+    public int get_element(int pos) throws Exception
+    {
+        if (pos>= size||pos<0)
+            throw new Exception("Out of index range");
+        else {
+            ListElement q = this.head;
+            if (pos >= 0 && pos < size) {
+                for (int i = 0; i < size; i++) {
+                    if (i == pos) return q.data;
+                    q = q.next;
+                }
+            }
+        }
+        return 0;
+    }
 }
 
 

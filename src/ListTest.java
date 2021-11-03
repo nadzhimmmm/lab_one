@@ -61,9 +61,9 @@ class ListTest {
         LIST6.add_in_back(4);
         LIST6.add_in_back(5);
         LIST6.add_in_back(5);
-        assertDoesNotThrow(() -> LIST6.delete_back());
+        assertDoesNotThrow(() -> LIST6.delete_last());
         assertEquals(1, LIST6.getSize());
-        assertDoesNotThrow(() -> LIST6.delete_back());
+        assertDoesNotThrow(() -> LIST6.delete_last());
         assertEquals(0, LIST6.getSize());
 
     }
