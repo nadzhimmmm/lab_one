@@ -110,13 +110,11 @@ class List {
                     new_element.next = t.next;
                     t.next = new_element;
                     size++;
-
                 }
                 t = t.next;
                 i++;
             }
         }
-
     }
 
     /**
@@ -140,13 +138,13 @@ class List {
                 head = tail = null;
             } else {
                 ListElement q = this.head;
-                ListElement t = this.head;
+                ListElement new_last_elem = this.head;
                 while (q.next != null) {
-                    t = q;
+                    new_last_elem= q;
                     q = q.next;
                 }
-                t.next = null;
-                tail=t;
+                new_last_elem.next = null;
+                tail=new_last_elem;
             }
             size--;
         }
@@ -172,7 +170,7 @@ class List {
      */
     public void delete_in_position(int index) throws Exception {
         if (index > size) {
-            throw new Exception("The index is entered incorrectly");
+            throw new Exception("Delete an element with an invalid index");
         }
         if (index == 0) {
             delete_first();
@@ -215,7 +213,7 @@ class List {
     public String toString() {
         String result = new String(" ");
         if (getSize() == 0) {
-            return "The list is empty";
+            return "Список пуст.";
         }
         for (int i = 0; i < getSize(); i++) {
             String t = null;
@@ -226,6 +224,7 @@ class List {
             }
             result += t.toString() + " ";
         }
+        System.out.print("Список: ");
         result = result.substring(0, result.length() - 1);
         return result;
     }

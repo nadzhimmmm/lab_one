@@ -13,25 +13,38 @@ class Main {
         while(quit!=0)
         {
             System.out.println("____________________________");
-            System.out.println("1.Добавление");
-            System.out.println("2.Удаление");
+            System.out.println("1.Добавить элемент");
+            System.out.println("2.Удалить элемент");
             System.out.println("3.Вывод");
-            System.out.println("4.Размерность списка");
+            System.out.println("4.Размерность");
             System.out.println("0.Выход");
             System.out.println("____________________________");
             Scanner in=new Scanner(System.in);
+            while(!in.hasNextInt()) {
+                System.out.println("Ошибка. Неверный ввод. Введите число от 0 до 4.");
+                in.next();
+
+            }
             option=in.nextInt();
             if (option==1)
             {
                 System.out.println("Значение добавляемого элемента");
+                while(!in.hasNextInt()) {
+                    System.out.println("Ошибка. Неверный ввод. Введите число от 0 до 4.");
+                    in.next();
+                }
                 int data=in.nextInt();
                 System.out.println("1.Добавить в начало");
                 System.out.println("2.Добавить в конец");
                 System.out.println("3.Добавить в произвольное место");
+                while(!in.hasNextInt()) {
+                    System.out.println("Ошибка. Неверный ввод. Введите число от 1 до 3.");
+                    in.next();
+                }
                 y=in.nextInt();
                 while(y!=1&&y!=2&&y!=3)
                 {
-                    System.out.println("Некорректный ввод. Введите число от 1 до 3.");
+                    System.out.println("Ошибка. Неверный ввод. Введите число от 1 до 3.");
                     y=in.nextInt();
                 }
                 if(y==1) l.add_in_front(data);
@@ -40,13 +53,27 @@ class Main {
                 {
                     System.out.println("На какую позицию вы хотите поставить новый элемент?");
                     int pos=in.nextInt();
+                    while(pos<0||pos> l.getSize())
+                    {
+                        System.out.println("Ошибка. Выход за границы списка. Повторите ввод.");
+                        pos=in.nextInt();
+                    }
                     l.add_in_position(pos,data);
                 }
             }
             else if (option==2)
             {
                 System.out.println("Позиция удаляемого элемента");
+                while(!in.hasNextInt()) {
+                    System.out.println("Ошибка. Неверный ввод. Введите число.");
+                    in.next();
+                }
                 int pos=in.nextInt();
+                while(pos>l.getSize()-1||pos<0)
+                {
+                    System.out.println("Ошибка. Выход за границы списка. Повторите ввод.");
+                    pos=in.nextInt();
+                }
                 l.delete_in_position(pos);
             }
             else if (option==3)
@@ -60,7 +87,7 @@ class Main {
                 System.out.println(a);
             }
             else if (option==0) quit=0;
-            else System.out.println("Некорректный ввод. Введите число от 0 до 4.");
+            else System.out.println("Ошибка. Неверный ввод. Введите число от 0 до 4.");
         }
     }
 }
