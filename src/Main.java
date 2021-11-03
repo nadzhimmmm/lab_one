@@ -7,9 +7,25 @@ import java.util.NoSuchElementException;
 class Main {
     public static void main(String[] args) throws Exception {
         List l = new List();
+        System.out.println("Введите количество элементов");
+        Scanner in=new Scanner(System.in);
+        while(!in.hasNextInt()) {
+            System.out.println("Ошибка. Неверный ввод. Введите число.");
+            in.next();
+        }
+        int n=in.nextInt();
+        for (int i=0;i<n;i++)
+        {
+            System.out.println((i+1)+")");
+            int val=in.nextInt();
+            l.add_in_back(val);
+        }
+        System.out.print("Cписок: ");
+        System.out.println(l.toString());
         int option;
         int quit=1;
         int y;
+        System.out.println("Выберите действие.");
         while(quit!=0)
         {
             System.out.println("____________________________");
@@ -19,7 +35,6 @@ class Main {
             System.out.println("4.Размерность");
             System.out.println("0.Выход");
             System.out.println("____________________________");
-            Scanner in=new Scanner(System.in);
             while(!in.hasNextInt()) {
                 System.out.println("Ошибка. Неверный ввод. Введите число от 0 до 4.");
                 in.next();
@@ -30,10 +45,10 @@ class Main {
             {
                 System.out.println("Значение добавляемого элемента");
                 while(!in.hasNextInt()) {
-                    System.out.println("Ошибка. Неверный ввод. Введите число от 0 до 4.");
+                    System.out.println("Ошибка. Неверный ввод. Введите число.");
                     in.next();
                 }
-                int data=in.nextInt();
+                int data_new_element=in.nextInt();
                 System.out.println("1.Добавить в начало");
                 System.out.println("2.Добавить в конец");
                 System.out.println("3.Добавить в произвольное место");
@@ -47,18 +62,22 @@ class Main {
                     System.out.println("Ошибка. Неверный ввод. Введите число от 1 до 3.");
                     y=in.nextInt();
                 }
-                if(y==1) l.add_in_front(data);
-                else if(y==2) l.add_in_back(data);
+                if(y==1) l.add_in_front(data_new_element);
+                else if(y==2) l.add_in_back(data_new_element);
                 else if(y==3)
                 {
                     System.out.println("На какую позицию вы хотите поставить новый элемент?");
+                    while(!in.hasNextInt()) {
+                        System.out.println("Ошибка. Неверный ввод. Введите число");
+                        in.next();
+                    }
                     int pos=in.nextInt();
                     while(pos<0||pos> l.getSize())
                     {
                         System.out.println("Ошибка. Выход за границы списка. Повторите ввод.");
                         pos=in.nextInt();
                     }
-                    l.add_in_position(pos,data);
+                    l.add_in_position(pos,data_new_element);
                 }
             }
             else if (option==2)

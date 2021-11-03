@@ -9,10 +9,10 @@ class ListTest {
     @org.junit.jupiter.api.Test
     void test_add_in_front() {
         List LIST1 = new List();
-        LIST1.add_in_back(1);
-        LIST1.add_in_back(2);
-        LIST1.add_in_back(3);
-        assertDoesNotThrow(() -> assertEquals(1, LIST1.front()));
+        LIST1.add_in_front(1);
+        LIST1.add_in_front(2);
+        LIST1.add_in_front(3);
+        assertDoesNotThrow(() -> assertEquals(3, LIST1.front()));
     }
 
     @org.junit.jupiter.api.Test

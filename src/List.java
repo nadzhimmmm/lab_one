@@ -39,18 +39,15 @@ class List {
     {
         ListElement new_element = new ListElement();
         new_element.data = data;
-
         if (head == null) {
-            head = new_element;
             tail = new_element;
-            size++;
+
         } else {
             new_element.next = head;
-            head = new_element;
-            size++;
+
         }
-
-
+        head = new_element;
+        size++;
     }
 
     /**
@@ -64,13 +61,13 @@ class List {
         new_element.data = data;
         if (tail == null) {
             head = new_element;
-            tail = new_element;
-            size++;
+
         } else {
             tail.next = new_element;
-            tail = new_element;
-            size++;
+
         }
+        tail = new_element;
+        size++;
     }
 
     /**
@@ -189,21 +186,8 @@ class List {
     }
 
 
-    /**
-     * The method that displays the list on the screen
-     */
-    void printList() {
-        ListElement q = this.head;
-        if (q == null) {
-            System.out.println("The list is empty, add items to it.");
-            return;
-        }
-        while (q != null) {
-            System.out.print(q.data);
-            System.out.print(" ");
-            q = q.next;
-        }
-    }
+
+
 
     /**
      * Redefined toString method

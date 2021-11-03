@@ -16,8 +16,7 @@ class ListElement {
     public ListElement next;
 
     /** Element value field*/
-    int data;
-
+    public int data;
     /**
      * Creates an element with the entered data
      * @param data element value
