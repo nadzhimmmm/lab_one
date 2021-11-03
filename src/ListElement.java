@@ -29,7 +29,7 @@ class ListElement {
     }
 
     /**
-     * Сreates an empty element
+     * Сreate an empty element
      */
     public ListElement()
     {

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AssertionsKt;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ListTest {
-
     @org.junit.jupiter.api.Test
     void test_add_in_front() {
         List LIST1 = new List();
