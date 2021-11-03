@@ -78,6 +78,7 @@ class Main {
             }
             else if (option==3)
             {
+                System.out.print("Список: ");
                 System.out.println(l.toString());
             }
             else if (option==4)

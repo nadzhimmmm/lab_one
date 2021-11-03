@@ -165,21 +165,21 @@ class List {
 
     /**
      * Deleting an item by position
-     * @param index index of the item being deleted
+     * @param pos index of the item being deleted
      * @throws Exception attempt to delete an element with an invalid index
      */
-    public void delete_in_position(int index) throws Exception {
-        if (index > size) {
+    public void delete_in_position(int pos) throws Exception {
+        if (pos > size) {
             throw new Exception("Delete an element with an invalid index");
         }
-        if (index == 0) {
+        if (pos == 0) {
             delete_first();
-        } else if (index == size-1) {
+        } else if (pos == size-1) {
             delete_last();
         } else {
             ListElement t = this.head;
             int counter = 0;
-            while (counter != index - 1) {
+            while (counter != pos - 1) {
                 t = t.next;
                 counter++;
             }
@@ -224,7 +224,6 @@ class List {
             }
             result += t.toString() + " ";
         }
-        System.out.print("Список: ");
         result = result.substring(0, result.length() - 1);
         return result;
     }
